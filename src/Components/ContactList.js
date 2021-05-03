@@ -1,6 +1,7 @@
 import React from 'react'
 import Contacts from './Contacts'
 
+
 const ContactList = () => {
     return (
         <div className="container">
