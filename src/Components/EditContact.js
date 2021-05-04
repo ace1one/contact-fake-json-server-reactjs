@@ -6,7 +6,7 @@ const EditContact = () => {
     const { id } = useParams();
     const {history} = useHistory();
     
-    const {contactList,currentContact,updateContact} = useContext(contactContext)
+    const {currentContact,updateContact} = useContext(contactContext)
     console.log(currentContact)
     // const datacon = contactList.find(list=>list.id = id)
     const [input,setInput]= useState({

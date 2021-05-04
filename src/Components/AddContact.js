@@ -1,8 +1,10 @@
 import React,{useContext,useState} from 'react'
 import {contactContext} from '../Context/ContactProvider'
+import { useHistory } from 'react-router'
 
 
 const AddContact = () => {
+    let history = useHistory()
     const {createContact} = useContext(contactContext)
     const [input,setInput]= useState({
         fname:"",
@@ -29,6 +31,7 @@ const AddContact = () => {
 
         }
          createContact(addNew)
+         history.push("/")
     }
 
     return (

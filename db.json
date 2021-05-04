@@ -1,0 +1,18 @@
+{
+  "contactList": [
+    { 
+        "id": 1, 
+        "fullname": "json-server", 
+        "phone": 9847542548,
+        "email": "acem.acim@gmail.com"
+      },
+      { 
+          "id": 2, 
+          "fullname": "Ashim KC", 
+          "phone": 9847542548,
+          "email": "acem.acim@gmail.com"
+        }
+        
+  ]
+  
+}

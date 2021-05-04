@@ -1,5 +1,4 @@
 import './App.css';
-import {useState} from 'react'
 import AddContact from './Components/AddContact';
 import ContactList from './Components/ContactList';
 import NavBar from './Components/NavBar';
@@ -10,32 +9,20 @@ import ContactProvider from './Context/ContactProvider'
 function App() {
  
   return (
-    // <Router>
-    //   <div className="App">
-    //       <NavBar/>
-    //         <Switch>
-    //           <ContactContext.Provider value={{contactList,setContactList}}>
-    //             <Route exact path="/" component={ContactList} />
-    //             <Route exact path="/add" component={AddContact} />
-    //             <Route exact path="/edit/:id" component={EditContact} />
-    //           </ContactContext.Provider>
-    //         </Switch>        
-    //    </div>
-    // </Router>
-
-
-<Router>
-      <div className="App">
-          <NavBar/>
-            <Switch>
-              <ContactProvider>
-                <Route exact path="/" component={ContactList} />
-                <Route exact path="/add" component={AddContact} />
-                <Route exact path="/edit/:id" component={EditContact} />
-              </ContactProvider>
-            </Switch>        
-       </div>
-    </Router>
+       <Router>
+          <div className="App">
+            <div className="Dark">
+              <NavBar/>
+                <Switch>
+                  <ContactProvider>
+                    <Route exact path="/" component={ContactList} />
+                    <Route exact path="/add" component={AddContact} />
+                    <Route exact path="/edit/:id" component={EditContact} />
+                  </ContactProvider>
+                </Switch>    
+                </div>    
+          </div>
+        </Router>
    
   );
 }

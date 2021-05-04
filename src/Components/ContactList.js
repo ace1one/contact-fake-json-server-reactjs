@@ -6,9 +6,9 @@ const ContactList = () => {
     return (
         <div className="container">
             <h1>Contact List</h1>
-            <div class="list-group">
+            <ul class="list-group col-sm-6">
                <Contacts/>
-            </div>
+           </ul>
         </div>
     )
 }

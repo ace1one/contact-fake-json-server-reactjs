@@ -1,4 +1,5 @@
 import {createContext, useReducer} from 'react'
+import axios from 'axios'
 import {
         CREATE_CONTACT,
         GET_CONTACT,
@@ -8,11 +9,17 @@ import {
         LOAD_CONTACT
        } from './Constant'
 
+// Setting up global state
 export const contactContext = createContext();
 
-// Reducer
+// Reducer function
 const contactReducer= (state,action)=>{
     switch(action.type){
+        case GET_CONTACT:
+            return{
+             ...state,
+             contactList : action.payload
+            };
         case CREATE_CONTACT:
            return{
              ...state,
@@ -42,19 +49,12 @@ const contactReducer= (state,action)=>{
 
 const ContactProvider = props =>{
      const InitialState={
-         contactList :[
-             {
-                id : 1,
-                fullname :"ashim",
-                phone : "9847542548",
-                email : "acim@gmail.com"
-
-             }
-         ],
-         currentContact: null
+         contactList :[],
+         currentContact: null,
      };
 
-     const [state,dispatch]= useReducer(contactReducer,InitialState);
+//seting up reducer, it takes  reducer function and initialstate
+const [state,dispatch]= useReducer(contactReducer,InitialState);
 
   //Actions
      const createContact= contact =>{
@@ -82,15 +82,37 @@ const ContactProvider = props =>{
          dispatch({
              type : UPDATE_CONTACT,
              payload: contact
-         })
+         })   
+
      }
 
+     //fetching data from server and updating in contactlist 
+    const  getContact = async ()=> {
+       try {
+           const res = await axios.get("http://localhost:3001/contactList");       
+           dispatch({
+            type : GET_CONTACT,
+            payload: res.data
+           
+        });
+       
+       } catch (error) {
+           console.log("ERROR")
+       }
+      
+        
+
+    }
+
+
+    //sending data from global context to children components
      return(
          <contactContext.Provider value={{
             contactList : state.contactList,
              currentContact: state.currentContact,
              createContact,
-             deleteContact,setContact, updateContact
+             deleteContact,setContact, updateContact,getContact
+           
          }}>
              {props.children}
          </contactContext.Provider>
